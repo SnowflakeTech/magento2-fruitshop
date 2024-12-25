@@ -1,0 +1,34 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php include('address_button.php') ?>
+<div class="multicheckout success  ttr_address_link_border  ttr_cart_content" style="padding: 10px;">
+    <p class="subtitle ttr_prodsigninheading"><?php echo $block->escapeHtml(__('Thank you for your purchase!')) ?></p>
+    <p><?php echo $block->escapeHtml(__('Thanks for your order. We\'ll email you order details and tracking information.')) ?></p>
+    <?php if ($_orderIds = $block->getOrderIds()): ?>
+    <p class="order-number">
+        <?php $flag = false ?>
+        <span>
+            <?php if (count($_orderIds) > 1): ?>
+                <?php echo $block->escapeHtml(__('Your order numbers are: ')) ?>
+            <?php else : ?>
+                <?php echo $block->escapeHtml(__('Your order number is: ')) ?>
+            <?php endif; ?>
+        </span>
+        <?php foreach ($_orderIds as $orderId => $incrementId): ?><?php if ($flag): ?><?php echo ', ' ?><?php endif; ?><?php $flag = true ?><a href="<?php /* @escapeNotVerified */ echo $block->getViewOrderUrl($orderId) ?>"><?php /* @escapeNotVerified */ echo $incrementId ?></a><?php endforeach; ?>
+    </p>
+    <?php endif; ?>
+    <?php echo $block->getChildHtml() ?>
+    
+</div>
+<hr>
+<div class="actions" style="float:right;">
+        <a class="action continue <?php echo $button_value; ?>" title="<?php echo $block->escapeHtml(__('Continue Shopping')) ?>" href="<?php /* @escapeNotVerified */ echo $block->getContinueUrl() ?>"><span><?php echo $block->escapeHtml(__('Continue Shopping')) ?></span></a>
+    </div>
+    <div style="clear: both;"></div>

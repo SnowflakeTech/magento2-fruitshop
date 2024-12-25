@@ -1,0 +1,17 @@
+<?php
+$newsList = $block->getNews();
+if (!empty($newsList)) :
+?>
+    <ul class="news-list">
+        <?php foreach ($newsList as $news): ?>
+            <li>
+                <a href="<?php echo $news['link']; ?>" target="_blank">
+                    <?php echo $news['title']; ?>
+                </a>
+                <p><?php echo $news['description']; ?></p>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p><?php echo __('No news available at the moment.'); ?></p>
+<?php endif; ?>

@@ -1,0 +1,39 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View*/
+?>
+<?php
+$_product = $block->getProduct();
+$_wishlistSubmitParams = $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product);
+$compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');
+?>
+
+<div class="product-addto-links ttr_prodes_WCE" data-role="add-to-links" style="margin-top: 12px;">
+    <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()) : ?>
+        <p class="one">
+        <img src="<?php  echo $block->getViewFileUrl('images/wishlist.png'); ?>" alt="" style="vertical-align: middle;">
+        <a href="#"
+            class="action towishlist"
+            data-post='<?php /* @escapeNotVerified */ echo $_wishlistSubmitParams; ?>'
+            data-action="add-to-wishlist" style="vertical-align: middle; margin-left: 5px;"><span><?php /* @escapeNotVerified */ echo __('Wish List') ?></span></a></p>
+    <?php endif; ?>
+    <!--<span class="separator">|</span>-->
+    <p class="two">
+     <img src="<?php  echo $block->getViewFileUrl('images/compare.png'); ?>" alt="" style="vertical-align: middle;">
+    <a href="#" data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_product);?>'
+        data-role="add-to-links"
+        class="action tocompare" style="vertical-align: middle; margin-left: 5px;"><span><?php /* @escapeNotVerified */ echo __('Compare') ?></span></a></p>
+</div> 
+<script type="text/x-magento-init">
+    {
+        "body": {
+            "addToWishlist": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($block->getWishlistOptions())?>
+        }
+    }
+</script>

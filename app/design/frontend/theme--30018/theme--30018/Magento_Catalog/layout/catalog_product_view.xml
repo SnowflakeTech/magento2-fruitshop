@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+   <container name="product.info.main" htmlTag="div" htmlClass="product-info-main col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 col-12" before="-"/>
+    <container name="bundle.options.container" htmlTag="div" htmlClass="bundle-options-container" after="product.info.media"/> 
+  	<container name="product.info.media" htmlTag="div" htmlClass="product media col-xl-6 col-lg-6 col-sm-12 col-md-6 col-xs-12 col-12" after="product.info.main"/>
+  	<move element="product.info.main" destination="content" after="product.info.media"/>
+  	<move element="page.main.title" destination="product.info.main" before="-"/>
+  	<move element="bundle.options.container" destination="content" after="product.info.main"/>
+  	<move element="product.info.media" destination="content" before="-"/>
+  	<move element="product.info.details" destination="content" after="-"/>
+  </body>
+</page>

@@ -1,0 +1,60 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div style="clear: both;"></div>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
+    <div class="product info detailed col-xl-12 col-lg-12 col-xs-12 col-12">
+        <?php $layout = $block->getLayout(); ?>
+        <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+            <ul class="nav nav-tabs ttr_prodes_Tab_Title">
+            <?php foreach ($detailedInfoGroup as $name):?>
+           
+              <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                ?>
+                 <li class="data item title"
+                     aria-labeledby="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title"
+                     data-role="collapsible" id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>">
+                    <a class="data switch nav-link"
+                       tabindex="-1"
+                       data-toggle="tab"
+                       href="#<?php /* @escapeNotVerified */ echo $alias; ?>"
+                       id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title">
+                        <?php /* @escapeNotVerified */ echo $label; ?>
+                    </a>
+                </li>
+                  <?php endforeach;?>
+                     
+                </ul>
+                <div class=" tab-content ttr_prodes_Tab_Content">
+                 <?php foreach ($detailedInfoGroup as $name):?>
+           
+              <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                ?>
+                <div class="data item content tab-pane active" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content">
+                    <?php /* @escapeNotVerified */ echo $html; ?>
+                </div>
+                
+                       <?php endforeach;?>
+                       </div>
+        </div>
+    </div>
+<?php endif; ?>
+<div style="clear: both;"></div>

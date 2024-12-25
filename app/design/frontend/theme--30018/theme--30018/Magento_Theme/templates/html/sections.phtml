@@ -1,0 +1,41 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+
+/**
+*  General template for displaying group of blocks devided into sections
+*/
+
+$group = $block->getGroupName();
+$groupCss = $block->getGroupCss();
+$groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"tabs":{"openedState":"active"}}';
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames($group, 'getChildHtml')):?>
+    <div class="sections <?php /* @escapeNotVerified */ echo $groupCss ?>">
+        <?php $layout = $block->getLayout(); ?>
+        <ul class="header links section-items <?php /* @escapeNotVerified */ echo $groupCss ?>-items" data-mage-init='<?php /* @escapeNotVerified */ echo $groupBehavior ?>'>
+            <?php foreach ($detailedInfoGroup as $name):?>
+                <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html) && ($block->getUseForce() != true)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                ?>
+                <li class="section-item-title <?php /* @escapeNotVerified */ echo $groupCss ?>-item-title" data-role="collapsible">
+                    <a class="<?php /* @escapeNotVerified */ echo $groupCss ?>-item-switch" data-toggle="switch" href="#<?php /* @escapeNotVerified */ echo $alias; ?>"><?php /* @escapeNotVerified */ echo $label; ?></a>
+                </li>
+                <li class="section-item-content <?php /* @escapeNotVerified */ echo $groupCss ?>-item-content" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content"><?php /* @escapeNotVerified */ echo $html; ?></li>
+            <?php endforeach;?>
+        </ul>
+    </div>
+    <div style="clear:both;"></div>
+<?php endif; ?>

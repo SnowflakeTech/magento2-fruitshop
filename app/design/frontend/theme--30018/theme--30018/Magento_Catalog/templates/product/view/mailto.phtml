@@ -1,0 +1,16 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_product = $block->getProduct() ?>
+<?php if ($block->canEmailToFriend()): ?>
+<p class="third" style="margin-top: 10px;">
+  <img src="<?php  echo $block->getViewFileUrl('images/email.png'); ?>" alt="" style="vertical-align: middle;">
+    <a href="<?php /* @escapeNotVerified */ echo $this->helper('Magento\Catalog\Helper\Product')->getEmailToFriendUrl($_product) ?>"
+       class="action mailto friend" style="vertical-align: middle; margin-left: 5px;"><span><?php /* @escapeNotVerified */ echo __('Email') ?></span></a></p>
+<?php endif; ?>

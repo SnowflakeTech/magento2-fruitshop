@@ -1,0 +1,12 @@
+<div class="rss-news">
+    <h1><?php echo __('Latest Business News') ?></h1>
+    <ul>
+        <?php foreach ($block->getRssFeed() as $item): ?>
+            <li>
+                <a href="<?php echo $item['link']; ?>" target="_blank"><?php echo $item['title']; ?></a>
+                <p><?php echo $item['description']; ?></p>
+                <small><?php echo __('Published on: ') . $item['pubDate']; ?></small>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

@@ -1,0 +1,53 @@
+<?php 
+/* Top menu for store * 
+*@see \Magento\Theme\Block\Html\Topmenu 
+*/ 
+?> 
+<?php global $magmenu,$horzmenu,$click,$stretch;
+$magmenu = false; 
+$horzmenu = false; 
+$stretch = false; 
+$click = false;
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+$_menu = $block->getHtml('level-top', 'submenu', $columnsLimit) ?>
+<div id="ttr_menu"> <!-- menu opening -->
+<nav class="navbar-default navbar-expand-md navbar"><!-- nav opening -->
+   <div id="ttr_menu_inner_in"><!-- menu_inner_in opening -->
+<div class="ttr_menu_element_alignment container"><!-- element alignment opening -->
+<div class="menuforeground">
+</div>
+</div><!-- element alignment container closing-->
+<div class="ttr_images_container"><!-- images animation container opening-->
+<div class="menuforeground">
+</div>
+<div class="ttr_menu_logo">
+</div>
+</div><!-- images animation container closing-->
+<div id="navigationmenu">
+<div class="navbar-header">
+<button id="nav-expander" data-target=".navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+<span class="ttr_menu_toggle_button">
+<span class="sr-only">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+<span class="icon-bar">
+</span>
+</span>
+<span class="ttr_menu_button_text">
+Menu
+</span>
+</button>
+</div>
+<div class="menu-center collapse navbar-collapse">
+<ul class="ttr_menu_items nav navbar-nav nav-center">
+ <?php /* @escapeNotVerified */  echo $_menu; ?>
+</ul>
+</div>
+</div>
+</div><!-- menu_inner_in closing-->
+</nav><!-- nav closing -->
+</div><!-- menu closing -->
+
